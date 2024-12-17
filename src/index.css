@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #8A2BE2;
+  --secondary: #FF69B4;
+  --accent: #4169E1;
+}
+
+body {
+  @apply bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle 1.5s linear infinite;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.nav-link {
+  @apply relative px-3 py-2;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
