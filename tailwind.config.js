@@ -7,9 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
-        accent: 'var(--accent)',
+        'unicorn-purple': '#b66eff',
+        'unicorn-blue': '#00d4ff',
       },
     },
   },
