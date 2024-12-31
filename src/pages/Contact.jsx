@@ -1,37 +1,14 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { contactService } from '../services/contactService';
-import PageHeader from '../components/PageHeader';
-import BackgroundSparkles from '../components/BackgroundSparkles';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import '../styles/Contact.css';
+import React from 'react'
+import { motion } from 'framer-motion'
+import PageHeader from '../components/PageHeader'
+import BackgroundSparkles from '../components/BackgroundSparkles'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import '../styles/Contact.css'
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [status, setStatus] = useState({ type: '', message: '' });
-
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.id]: e.target.value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      setStatus({ type: 'loading', message: 'Sending...' });
-      await contactService.submitContact(formData);
-      setStatus({ type: 'success', message: 'Message sent successfully!' });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      setStatus({ type: 'error', message: 'Failed to send message. Please try again.' });
-    }
+    // Add form submission logic here
   };
 
   return (
@@ -40,6 +17,7 @@ function Contact() {
       <PageHeader 
         title="Contact Us" 
         subtitle="Let's create something magical together"
+        backgroundVariant="contact"
       />
       
       <main className="page-content">
@@ -103,54 +81,24 @@ function Contact() {
               transition={{ delay: 0.3 }}
             >
               <form className="contact-form card-base" onSubmit={handleSubmit}>
-                {status.message && (
-                  <div className={`status-message ${status.type}`}>
-                    {status.message}
-                  </div>
-                )}
-                
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    value={formData.name}
-                    onChange={handleChange}
-                    required 
-                  />
+                  <input type="text" id="name" required />
                 </div>
                 
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    value={formData.email}
-                    onChange={handleChange}
-                    required 
-                  />
+                  <input type="email" id="email" required />
                 </div>
                 
                 <div className="form-group">
                   <label htmlFor="subject">Subject</label>
-                  <input 
-                    type="text" 
-                    id="subject" 
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required 
-                  />
+                  <input type="text" id="subject" required />
                 </div>
                 
                 <div className="form-group">
                   <label htmlFor="message">Message</label>
-                  <textarea 
-                    id="message" 
-                    rows="5" 
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
+                  <textarea id="message" rows="5" required></textarea>
                 </div>
                 
                 <motion.button 
@@ -158,9 +106,8 @@ function Contact() {
                   className="btn btn-primary"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  disabled={status.type === 'loading'}
                 >
-                  {status.type === 'loading' ? 'Sending...' : 'Send Message'}
+                  Send Message
                 </motion.button>
               </form>
             </motion.div>
@@ -168,7 +115,7 @@ function Contact() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

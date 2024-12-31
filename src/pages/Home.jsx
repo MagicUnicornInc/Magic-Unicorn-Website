@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ServiceOptions from '../components/ServiceOptions';
 import { FaRocket, FaLightbulb, FaMagic } from 'react-icons/fa';
+import { UnicornLogo } from '../images';
 import '../styles/ServiceOptions.css';
 
-// Lazy load the hero logo
+// Lazy load components
 const LazyImage = lazy(() => import('../components/LazyImage'));
-const UnicornLogo = '/src/images/unicorn.svg';
 
 export default function Home() {
   return (
